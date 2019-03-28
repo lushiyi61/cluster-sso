@@ -5,8 +5,6 @@ app:
   dev: true   # true 开发模式下 false 生产环境
 #################################################################################################
 spring:
-  main:
-    web-application-type: none
   application:
     name: Sso-Server
   datasource:
@@ -26,6 +24,6 @@ eureka:
       defaultZone: http://user:123456@127.0.0.1:8800/eureka/
 #################################################################################################
 jwt:
-  timeout: 3600
+  timeout: 60000
   key: aoeuidhtns
 

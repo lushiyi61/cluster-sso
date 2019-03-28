@@ -23,12 +23,16 @@ class AccountServer {
 //    }
 
     fun create(account: String, password: String): String {
-        return transaction {
-            AccountTable.insert {
-                it[AccountTable.account] = account
-                it[AccountTable.password] = password
-            } get AccountTable.account
-        } ?: error(ResponseCode.CREATE_FAILURE)
+        return try {
+            transaction {
+                AccountTable.insert {
+                    it[AccountTable.account] = account
+                    it[AccountTable.password] = password
+                } get AccountTable.account
+            } ?: error(ResponseCode.ACCOUNT_EXIST)
+        } catch (e: Exception) {
+            error(ResponseCode.ACCOUNT_EXIST)
+        }
     }
 
     fun check(account: String, password: String): String {

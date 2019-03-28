@@ -14,8 +14,7 @@ class JwtServer {
     @Throws(Exception::class)
     fun create(account: String, appId: String = ""): String {
         return JWT.create()
-                .withIssuer(appId)
-                .withSubject("用户")
+//                .withIssuer(appId)
                 .withClaim("account", account)
                 .withExpiresAt(Date(System.currentTimeMillis() + JwtConfig.timeout))
                 .sign(getAlgorithm())
