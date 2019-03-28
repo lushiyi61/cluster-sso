@@ -1,0 +1,31 @@
+server:
+  port: 8802 # 端口号
+#################################################################################################
+app:
+  dev: true   # true 开发模式下 false 生产环境
+#################################################################################################
+spring:
+  main:
+    web-application-type: none
+  application:
+    name: Sso-Server
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/kotgame
+    username: postgres
+    password: 123456
+  jackson:
+    time-zone: GMT+8    # 设置时区为东八区
+    date-format: yyyy-MM-dd HH:mm:ss # 设置时间格式
+#################################################################################################
+eureka:
+  instance:
+    hostname: 127.0.0.1 # 当前服务实例ip，eureka会以此ip + server.port作为服务url供其他服务依赖调用
+  client:
+    serviceUrl: # 服务注册中心的配置内容，指定服务注册中心的位置（包含注册中心用户名、密码、ip、端口）
+      defaultZone: http://user:123456@127.0.0.1:8800/eureka/
+#################################################################################################
+jwt:
+  timeout: 3600
+  key: aoeuidhtns
+
